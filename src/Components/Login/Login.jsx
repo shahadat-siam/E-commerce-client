@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import LoginBackground from "./LoginBackground";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const {
@@ -31,7 +32,7 @@ const LoginPage = () => {
     <div className="relative w-screen h-screen overflow-hidden">
       <LoginBackground />
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg max-w-[400px] w-full shadow-lg">
+        <div className="bg-white px-7 py-6 rounded-lg max-w-[400px] w-full shadow-lg">
             <div className="flex flex-col justify-center items-center">
             <img src="./vite.svg" className="w-12" alt="" />
             <h2 className="text-2xl  font-semibold font-sant mb-4">Please Login! </h2>
@@ -60,7 +61,7 @@ const LoginPage = () => {
               )}
             </div>
 
-            <div className="mb-6 relative">
+            <div className="mb-4 relative">
               <label
                 className="block text-start text-gray-700 text-sm font-bold mb-2"
                 htmlFor="password"
@@ -115,13 +116,14 @@ const LoginPage = () => {
 
             <div>
               <button
-                className="bg-[#f82e93] hover:bg-[#E90074] w-full text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-[#E90074] w-full hover:bg-[#d70064]  text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                  Log In
               </button>
             </div>
           </form>
+          <p className="text-start text-sm mt-4">New to site? Please  <Link to='/signup' className="cursor-pointer hover:underline text-[#E90074]">Sign up</Link></p>
         </div>
       </div>
     </div>
