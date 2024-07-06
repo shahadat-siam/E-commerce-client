@@ -1,0 +1,74 @@
+.slide-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slide-image { 
+  object-fit: cover; /* Ensure the image covers the entire slide */
+  transition: transform 0.8s ease-out;
+}
+
+.slide:hover .slide-image {
+  transform: scale(1.1); /* Scale up image on hover */
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.slide:hover .slide-overlay {
+  opacity: 1; /* Fade in overlay on hover */
+}
+
+.slide-content {
+  text-align: center;
+  color: #ffffff;
+  padding: 20px;
+  transform: translateY(20px);
+  transition: transform 0.8s ease-out;
+}
+
+.slide:hover .slide-content {
+  transform: translateY(0); /* Slide up content on hover */
+}
+
+.animated-text {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  animation: slide-in 1s ease-out;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-content p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
