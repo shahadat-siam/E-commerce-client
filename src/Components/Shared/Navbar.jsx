@@ -22,9 +22,10 @@ const Navbar = () => {
       <div
         className={`md:px-12 py-2 px-8 sticky top-0 z-10 max-w-screen-xl shadow-sm bg-[#f3fafa] mx-auto flex justify-between items-center  `}
       >
-        <div className="flex  items-center gap-1">
-          <img src="./vite.svg" className="mt-3" alt="" />
-          <KnockMeIcon />
+        <div className="flex my-3 items-center gap-1">
+          <img src="./vite.svg" className="" alt="" />
+          {/* <KnockMeIcon /> */}
+          <img className='w-36' src="/mslogo.png" alt="" />
         </div>
 
         <div className="flex items-center">

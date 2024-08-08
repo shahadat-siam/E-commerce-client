@@ -1,0 +1,56 @@
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Optional: background color for better visibility */
+  }
+  
+  .spinner {
+    width: 48px;
+    height: 48px;
+    animation: spin 2s linear infinite;
+  }
+  
+  .circle {
+    fill: transparent;
+    stroke: #E90074;
+    stroke-width: 2px;
+    stroke-dasharray: 70;
+    stroke-dashoffset: 0;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+  
+  .path {
+    fill: #E90074;
+    transform-origin: 50% 50%;
+    animation: path-scale 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 70;
+    }
+    50% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -70;
+    }
+  }
+  
+  @keyframes path-scale {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.8);
+    }
+  }
+  

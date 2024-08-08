@@ -8,9 +8,10 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Column 1: Website Name/Logo */}
         <div className='flex flex-col justify-start items-start text-start'>
-        <div className="flex mb-4 -mt-7 items-center gap-1">
-          <img src="./vite.svg" className="mt-3" alt="" />
-          <KnockMeLogoText/>
+        <div className="flex mb-4 -mt-2 items-center justify-center gap-1">
+          <img src="./vite.svg" className="" alt="" />
+          {/* <KnockMeLogoText/> */}
+          <img className='w-32' src="/mslogo.png" alt="" />
         </div>
            <div className='space-y-2'>
                 <p>For amazing products.</p>
@@ -62,7 +63,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-8 text-center border-t-[1px] border-gray-200 pt-6 text-gray-500">
-        &copy; {new Date().getFullYear()} KnockMe. All rights reserved.
+        &copy; {new Date().getFullYear()} MS Shop. All rights reserved.
       </div>
     </footer>
   );

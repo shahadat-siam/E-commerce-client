@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        sant: "'PT Serif', serif"
+        sand: "'Quicksand', serif-serif"
       }
     },
   },

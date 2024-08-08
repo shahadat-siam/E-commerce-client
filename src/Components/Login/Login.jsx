@@ -29,7 +29,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
+    <div className="relative max-w-7xl mx-auto w-screen h-screen overflow-hidden">
       <LoginBackground />
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="bg-white px-7 py-6 rounded-lg max-w-[400px] w-full shadow-lg">
