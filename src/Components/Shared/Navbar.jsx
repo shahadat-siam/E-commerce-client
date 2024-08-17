@@ -29,7 +29,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center">
-          <div id="nav-item" className={`md:flex items-center hidden`}>
+          <div id="nav-item" className={`md:flex items-center  `}>
             <div className="flex justify-between items-center md:mr-7 gap-2">
               {" "}
               <li className=" ">
