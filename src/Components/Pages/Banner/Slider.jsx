@@ -6,8 +6,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination"; 
+import 'swiper/css/navigation';
 
-import { Autoplay,Pagination } from "swiper/modules";
+import { Autoplay,Pagination, Navigation } from "swiper/modules";
 import Slide from "./Slide"; 
 
 export default function Slider() {
@@ -16,13 +17,14 @@ export default function Slider() {
       <Swiper
         autoplay={{
           delay: 5000,
-          disableOnInteraction: false,
-          loop:true
+          disableOnInteraction: false, 
         }} 
+        loop={true}
         pagination={{
           dynamicBullets: true,
         }}
-        modules={[Autoplay,Pagination ]}
+        navigation={true}
+        modules={[Autoplay,Pagination, Navigation  ]}
         className="mySwiper"
       >
         <SwiperSlide>

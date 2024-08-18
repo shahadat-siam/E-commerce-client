@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from "react-icons/fa";
 import LoginBackground from "./LoginBackground";
 import { Link } from "react-router-dom";
 
@@ -122,6 +122,22 @@ const LoginPage = () => {
                  Log In
               </button>
             </div>
+            <div className="flex justify-between mt-6">
+            <button
+            //   onClick={handleFacebookLogin}
+              className="flex items-center bg-[#0F67B1] hover:bg-[#1d5c8f] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mr-2"
+            >
+              <FaFacebook className="mr-2" />
+                Facebook
+            </button>
+            <button
+            //   onClick={handleGoogleLogin}
+              className="flex items-center bg-[#FF4191] hover:bg-[#E90074] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full ml-2"
+            >
+              <FaGoogle className="mr-2" />
+                Google
+            </button>
+          </div>
           </form>
           <p className="text-start text-sm mt-4">New to site? Please  <Link to='/signup' className="cursor-pointer hover:underline text-[#E90074]">Sign up</Link></p>
         </div>
