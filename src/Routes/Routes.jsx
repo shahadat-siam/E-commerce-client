@@ -4,6 +4,7 @@ import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import SignUp from "../Components/Signup/SignUp";
 import Contact from "../Components/Pages/Contact/Contact";
+import AddProduct from "../Admin/AddProduct";
 
 export const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
         {
           path: '/contact',
           element: <Contact/>
+        },
+        {
+          path:'/add-prodact',
+          element:<AddProduct/>
         }
       ]
     },
@@ -27,5 +32,6 @@ export const router = createBrowserRouter([
     {
       path: '/signup',
       element: <SignUp/>
-    }
+    },
+   
   ]);

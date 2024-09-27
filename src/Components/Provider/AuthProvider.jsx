@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { app } from "../Firebase/Firebase.config";
-import {createUserWithEmailAndPassword, FacebookAuthProvider, getAuth,  GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut} from "firebase/auth";
+import {createUserWithEmailAndPassword, FacebookAuthProvider, getAuth,  GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth";
+import axios from "axios";
 
  
 export const AuthContext = createContext(null)
@@ -18,6 +19,11 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
+    const signIn = (email, password) => {
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
     const signUpWithFacebook = () => {
         setLoading(true)
         return signInWithPopup(auth, facebookProvider);
@@ -33,10 +39,28 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
+    // save user data
+    const saveUser = async user => {
+        const currentUser = {
+            name: user?.displayName, 
+            email : user?.email, 
+            role: 'customer' ,  
+        }
+        // console.log(currentUser)
+        if(currentUser?.name !== null || currentUser?.image_url !== null){
+            const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/user`, currentUser)
+            // console.log(data)
+            return data
+        } 
+    }
+
     // On Auth state change
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            if(currentUser){
+                saveUser(currentUser)
+            }
             setLoading(false);
         })
         return () => {
@@ -48,6 +72,7 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         createUser,
+        signIn,
         signUpWithFacebook,
         loginWithGoogle,
         logOut,

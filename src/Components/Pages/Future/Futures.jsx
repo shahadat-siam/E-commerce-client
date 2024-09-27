@@ -9,7 +9,7 @@ import fu6 from '../../../assets/features/f6.png'
 const Futures = () => {
   return (
     <div>
-      <section className="section-p1" id="feature">
+      <section className=" px-3 md:px-7 py-12" id="feature">
         
         <div className="fe-box">
             <img src={fu6} alt=""/>

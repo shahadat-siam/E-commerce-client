@@ -1,7 +1,7 @@
 import img1 from "../../../assets/images/banner (1).jpg";
 import img2 from "../../../assets/images/banner.jpg";
 import img3 from "../../../assets/images/banner3.jpg";
-import img4 from "../../../assets/images/banner4.jpg";
+import img4 from "../../../assets/images/banner4.jpg"; 
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -39,6 +39,9 @@ export default function Slider() {
         <SwiperSlide>
           <Slide image={img4} title={'Your Gateway to Style'} subtitle={'Shop Trendy Fashion at Unbeatable Prices'}/>
         </SwiperSlide>
+        {/* <SwiperSlide>
+          <Slide image={img5} title={' '} subtitle={' '}/>
+        </SwiperSlide> */}
       </Swiper>
     </>
   );

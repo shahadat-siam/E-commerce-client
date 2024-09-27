@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from "react-icons/fa";
 import LoginBackground from "./LoginBackground";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
+  const {user, signIn, signUpWithFacebook, loginWithGoogle } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -14,13 +18,48 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const rememberMe = watch("rememberMe", false);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
     // Handle login logic here
+    try {
+      await signIn(data.email, data.password); 
+      toast.success("Successfully Logged in");
+      navigate("/");
+    } catch (err) {
+      console.log(err.message);
+    }
     if (rememberMe) {
       localStorage.setItem("rememberMe", JSON.stringify(data));
     } else {
       localStorage.removeItem("rememberMe");
+    }
+  };
+
+  // sign In facebook
+  const signInWithFacebook = async () => {
+    try {
+      await signUpWithFacebook();
+      navigate("/");
+      toast.success("successfully login");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    if(user){
+      navigate('/')
+    }
+  }, [navigate,user])
+
+  // sign in Google
+  const signInWithGoogle = async () => {
+    try {
+      await loginWithGoogle();
+      navigate("/"); 
+      toast.success("Successfully Login");
+    } catch (err) {
+      console.log(err.message);
     }
   };
 
@@ -33,10 +72,12 @@ const LoginPage = () => {
       <LoginBackground />
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="bg-white px-7 py-6 rounded-lg max-w-[400px] w-full shadow-lg">
-            <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center">
             <img src="./vite.svg" className="w-12" alt="" />
-            <h2 className="text-2xl  font-semibold font-sant mb-4">Please Login! </h2>
-            </div>
+            <h2 className="text-2xl  font-semibold font-sant mb-4">
+              Please Login!{" "}
+            </h2>
+          </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
               <label
@@ -119,27 +160,35 @@ const LoginPage = () => {
                 className="bg-[#E90074] w-full hover:bg-[#d70064]  text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                 Log In
+                Log In
               </button>
             </div>
-            <div className="flex justify-between mt-6">
-            <button
-            //   onClick={handleFacebookLogin}
+          </form>
+          <div className="flex justify-between mt-6">
+            <button disabled
+              onClick={signInWithFacebook}
               className="flex items-center bg-[#0F67B1] hover:bg-[#1d5c8f] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mr-2"
             >
               <FaFacebook className="mr-2" />
-                Facebook
+              Facebook
             </button>
             <button
-            //   onClick={handleGoogleLogin}
+              onClick={signInWithGoogle}
               className="flex items-center bg-[#FF4191] hover:bg-[#E90074] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full ml-2"
             >
               <FaGoogle className="mr-2" />
-                Google
+              Google
             </button>
           </div>
-          </form>
-          <p className="text-start text-sm mt-4">New to site? Please  <Link to='/signup' className="cursor-pointer hover:underline text-[#E90074]">Sign up</Link></p>
+          <p className="text-start text-sm mt-4">
+            New to site? Please{" "}
+            <Link
+              to="/signup"
+              className="cursor-pointer hover:underline text-[#E90074]"
+            >
+              Sign up
+            </Link>
+          </p>
         </div>
       </div>
     </div>

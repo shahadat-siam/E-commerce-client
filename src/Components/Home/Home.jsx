@@ -1,4 +1,6 @@
+  
 import Slider from "../Pages/Banner/Slider"; 
+import SummerCollection from "../Pages/Collection/SummerCollection";
 import Futures from "../Pages/Future/Futures";  
 
  
@@ -8,6 +10,7 @@ const Home = () => {
     <div> 
        <Slider/>
        <Futures/>  
+       <SummerCollection/>
     </div>
   );
 };

@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaFacebook, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import LoginBackground from "../Login/LoginBackground";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
+import axios from "axios";
 
 const SignupPage = () => {
-  const { createUser, signUpWithFacebook, loginWithGoogle } = useAuth();
+  const {user, createUser, signUpWithFacebook, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -17,11 +18,15 @@ const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log(data,); 
     // Handle signup logic here
     try {
       const result = createUser(data.email, data.password);
-      console.log(result);
+      // console.log(result);
+
+      const userInfo = {name: data?.name, email: data?.email, role: 'customer' }
+      await axios.put(`${import.meta.env.VITE_API_URL}/user`, userInfo);
+    
       navigate("/");
       toast.success("Successfully create account");
     } catch (err) {
@@ -48,12 +53,18 @@ const SignupPage = () => {
   const signInWithGoogle = async () => {
     try{
       await loginWithGoogle();
-      navigate("/");
+      navigate("/"); 
       toast.success("Successfully Login");
     } catch(err){
       console.log(err.message);
     }
   }
+
+  useEffect(() => {
+    if(user){
+      navigate('/')
+    }
+  }, [navigate,user])
 
   return (
     <div className="relative max-w-7xl mx-auto w-screen h-screen overflow-hidden">
@@ -168,7 +179,7 @@ const SignupPage = () => {
             </div> 
           </form>
           <div className="flex justify-between mt-6">
-              <button
+              <button disabled
                   onClick={signInWithFacebook}
                 className="flex items-center bg-[#0F67B1] hover:bg-[#1d5c8f] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mr-2"
               >

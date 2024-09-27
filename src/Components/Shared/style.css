@@ -35,6 +35,10 @@
       transition: 0.4s;
       z-index: 50;
     }
+
+    .cart{
+      display: none;
+    }
   
     #nav-item.active {
       right: 0px;
